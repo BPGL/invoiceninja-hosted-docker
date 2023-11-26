@@ -11,4 +11,7 @@ Thumbs.db
 charts/**/charts/
 
 # Compose filesystem
-/docker
+/docker/app/public/*
+/docker/app/storage/*
+redis/data/*
+env

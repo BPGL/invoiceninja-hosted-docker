@@ -43,3 +43,15 @@ MYSQL_DATABASE=ninja
 # V4 env vars
 # DB_STRICT=false
 # APP_CIPHER=AES-256-CBC
+
+NINJA_CLIENT_PORTAL=example.com
+APP_DOMAIN=example.com
+
+NINJA_LICENSE=*****-*****-****-****
+NINJA_PROD=true
+NINJA_ENVIRONMENT=hosted
+FLUTTER_RENDERER=hosted
+
+REDIS_SENTINEL_SERVICE=redismaster
+REDIS_HOST=redis-sentinel,redis-sentinel2,redis-sentinel3
+REDIS_PORT=26379,26379,26379
