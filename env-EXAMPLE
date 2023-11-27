@@ -1,7 +1,11 @@
 # IN application vars
+NINJA_CLIENT_PORTAL=
+APP_NAME=
+APP_LOGO=
 APP_URL=http://in.localhost:8003
 APP_KEY=<insert your generated key in here>
 APP_DEBUG=true
+APP_ENV=production
 REQUIRE_HTTPS=false
 PHANTOMJS_PDF_GENERATION=false
 PDF_GENERATOR=snappdf
@@ -19,10 +23,9 @@ DB_PASSWORD=ninja
 
 # Create initial user
 # Default to these values if empty
-# IN_USER_EMAIL=admin@example.com
-# IN_PASSWORD=changeme!
-IN_USER_EMAIL=
-IN_PASSWORD=
+IN_USER_EMAIL=admin@example.com
+IN_PASSWORD=changeme!
+ADMIN_EMAILS=admin@example.com
 
 # Mail options
 MAIL_MAILER=log
@@ -49,6 +52,7 @@ APP_DOMAIN=example.com
 
 NINJA_LICENSE=*****-*****-****-****
 NINJA_PROD=true
+NINJA_OFFICIAL_CONTACT="info@example.com"
 NINJA_ENVIRONMENT=hosted
 FLUTTER_RENDERER=hosted
 
