@@ -3,6 +3,7 @@ NINJA_CLIENT_PORTAL=
 APP_NAME=
 APP_LOGO=
 APP_URL=http://in.localhost:8003
+ASSET_URL=http://in.localhost:8003
 APP_KEY=<insert your generated key in here>
 APP_DEBUG=true
 APP_ENV=production
@@ -54,6 +55,7 @@ NINJA_LICENSE=*****-*****-****-****
 NINJA_PROD=true
 NINJA_OFFICIAL_CONTACT="info@example.com"
 NINJA_ENVIRONMENT=hosted
+NINJA_COMPANY_ID=1
 FLUTTER_RENDERER=hosted
 
 REDIS_SENTINEL_SERVICE=redismaster
