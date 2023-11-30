@@ -5,6 +5,7 @@ set +a
 cd ./docker/app/
 git clone --single-branch --branch main git@github.com:Zer0Divis0r/invoiceninja-ui.git
 cd invoiceninja-ui
+git pull
 cp -f .env.example .env
 sed -i "/^VITE_IS_HOSTED=/c\VITE_IS_HOSTED=true" .env
 sed -i "/^VITE_APP_TITLE=/c\VITE_APP_TITLE=\"$APP_NAME\"" .env

@@ -49,8 +49,8 @@ services:
 #      - ./docker/app/:/var/www/app/:rw,delegated
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
       - ./config/php/php-cli.ini:/usr/local/etc/php/php-cli.ini
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     networks:
       - invoiceninja
 #    extra_hosts:
