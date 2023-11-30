@@ -1,3 +1,7 @@
+
+echo
+echo Creating Admin Module...
+
 cd docker/app/Modules/
 rm -fr admin-module
 git clone --single-branch --branch master git@github.com:invoiceninja/admin-module.git && \

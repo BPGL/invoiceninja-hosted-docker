@@ -1,3 +1,4 @@
+echo
 echo "Replacing logo..."
 docker compose cp ./config/images/new_logo.png app:/var/www/app/public/images/
 docker compose cp ./config/images/favicon.ico app:/var/www/app/public/

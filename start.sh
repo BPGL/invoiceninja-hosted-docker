@@ -15,6 +15,8 @@ until docker compose logs -f | tee /dev/tty | grep -q "ready to handle connectio
 
 ./docker-enable-stripe.sh
 
+./docker-localize.sh
+
 ./docker-create-react-ui.sh
 
 ./docker-replace-images.sh

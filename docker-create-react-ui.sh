@@ -2,6 +2,9 @@ set -a
 source ./env
 set +a
 
+echo
+echo "Creating React UI..."
+
 cd ./docker/app/
 git clone --single-branch --branch main git@github.com:Zer0Divis0r/invoiceninja-ui.git
 cd invoiceninja-ui
