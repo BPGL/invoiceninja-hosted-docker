@@ -4,6 +4,7 @@ APP_NAME=
 APP_LOGO=
 APP_URL=http://in.localhost:8003
 ASSET_URL=http://in.localhost:8003
+REACT_URL=
 APP_KEY=<insert your generated key in here>
 APP_DEBUG=true
 APP_ENV=production
