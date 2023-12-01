@@ -1,3 +1,5 @@
+git pull
+
 chmod 777 docker/app/public 
 chmod 777 docker/app/storage
 
