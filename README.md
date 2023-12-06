@@ -6,6 +6,8 @@
 
 # Docker for [Invoice Ninja](https://www.invoiceninja.com/)
 
+# Special instructions for Hosted installation [here](#SpecialInstructionsforHostedInstallation)
+
 :crown: **Features**
 
 :lock: Automatic HTTPS (:heart: [Caddy](https://caddyserver.com/))  
@@ -105,3 +107,76 @@ Massive thank you to [lwj5](https://github.com/lwj5) for the tireless work to co
 ## Support
 
 If you discover a bug, please create and issue, if you query is general in nature please visit us on our [Forum ](https://forum.invoiceninja.com/)
+
+
+---
+<div id="SpecialInstructionsforHostedInstallation"></div>
+
+# Special Instructions for Hosted Installation
+
+## Purpose if this fork
+
+For hosted, branded installations you have to purchase a special license from Invoice Ninja.  
+You can not just get this repository and use ot for free.  
+It will also not work technically, because you have to get access to a closed Admin Module.
+
+## How will it work
+You will have:
+- React UI from [this repo](https://github.com/invoiceninja/ui) under your root domain
+- Backend from [Docker version](https://hub.docker.com/r/invoiceninja/invoiceninja/) under all subdomains
+
+## Prerequisites
+
+- Get access to Admin Module repo in GitHub from Invoice Ninja
+  - Set up SSH key with which you can access Admin Module Repo on GitHub
+- Create CDN setup:
+  - Root domain and www subdomain point to your server, to port 8080 (can be customized by adding REACTUI_EXPOSE_PORT entry to `env`)
+  - All subdomains except www point to your server, to port 8081 (can be customized by adding API_EXPOSE_PORT entry to `env`)
+  - Enable SSL
+- Create account in any email service that supports SMTP, add entries to env
+- Create account in Twilio, create a verification service there. Add to env API keys and verification app id.
+
+
+## Setup instructions
+- Copy `env-EXAMPLE` to `env`.  
+- Edit it according to your environment. Mind slashes in the end of URLs, this is important.
+- Customize images in `config/images/`
+
+
+### Set up React UI
+You will most likely want to use another UI repository, because you will want to change branding:
+change name of the app, replace logo, use custom list of currencies, etc. Refer to this repo as example:  
+https://github.com/invoiceninja/ui/compare/main...BPGL:invoiceninja-ui:main
+You can customize what UI repo to use in your installation by updating `REACTUI_REPO` in `env`.
+
+The most important steps are to update .env, and set:
+- `VITE_API_URL` to the same value as `APP_URL`
+- `VITE_IS_HOSTED=true`
+- `VITE_APP_TITLE` to what ever name you want to give your UI
+
+### Helper scripts
+
+The set of scripts that manage the installation, update and rebuild of components. You have to run them under root, 
+or under a user that has permissions to execute Docker commands.
+
+- `start.sh` - this will build and launch everything
+- `rebuild_app.sh` - this will rebuild the `app` container (the backend). Use to pull updates, etc.
+- `docker-create-react-ui.sh` - this will download and rebuild React UI.  
+  
+
+The rest of the scripts are called by `start.sh` and perform different phases of setup and customization.
+You can edit them according to your needs:
+
+- `docker-localize.sh` - removes excessive currencies and payment types
+- `docker-enable-stripe.sh` - enables Stripe module
+- `docker-create-admin.sh` - creates admin module, nothing to customize here
+- `docker-replace-images.sh` - replaces logo in backend app, nothing to customize here
+
+
+## Persistent data
+The data that needs to be persistent **and regularly backed up**:
+- `docker/app/public/storage/`
+- `docker/mysql/`
+
+Optional:
+- `redis/data/`
