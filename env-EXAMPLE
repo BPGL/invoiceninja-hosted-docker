@@ -1,17 +1,19 @@
 # IN application vars
-NINJA_CLIENT_PORTAL=
-APP_NAME=
-APP_LOGO=
-APP_URL=http://in.localhost:8003
-ASSET_URL=http://in.localhost:8003
-REACT_URL=
+NINJA_CLIENT_PORTAL=example.com
+APP_DOMAIN=example.com
+APP_NAME="Example Invoicing"
+APP_LOGO=https://example.com/logo.png
+APP_URL=https://invoicing.example.com
+ASSET_URL=https://invoicing.example.com
+REACT_URL=https://example.com
 APP_KEY=<insert your generated key in here>
-APP_DEBUG=true
+APP_DEBUG=false
 APP_ENV=production
-REQUIRE_HTTPS=false
+REQUIRE_HTTPS=trye
 PHANTOMJS_PDF_GENERATION=false
 PDF_GENERATOR=snappdf
 TRUSTED_PROXIES='*'
+NINJA_OFFICIAL_CONTACT="info@example.com"
 
 
 QUEUE_CONNECTION=database
@@ -73,3 +75,5 @@ DEFAULT_DATETIME_FORMAT_ID=8
 TWILIO_ACCOUNT_SID=
 TWILIO_AUTH_TOKEN=
 TWILIO_VERIFY_SID=
+
+REACTUI_REPO=git@github.com:invoiceninja/ui.git
