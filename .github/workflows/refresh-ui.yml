@@ -1,4 +1,4 @@
-name: Rebuild and restart application
+name: Rebuild UI
 
 on:
   workflow_dispatch:
