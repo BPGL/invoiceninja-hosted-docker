@@ -19,7 +19,7 @@ echo "Compiling React UI for Invoice Ninja, in hosted mode..."
 docker run -t -v .:/home/node/app/ node \
 bash -c "cd /home/node/app/ && npm install && npm run build"
 
-cd ../../
+cd ../../../
 docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/
 docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/logo192.png
 docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/logo180.png
