@@ -180,3 +180,5 @@ The data that needs to be persistent **and regularly backed up**:
 
 Optional:
 - `redis/data/`
+
+This repo has GitHub action that can do backups to S3 (do-backups.yml)
