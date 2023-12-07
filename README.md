@@ -181,4 +181,11 @@ The data that needs to be persistent **and regularly backed up**:
 Optional:
 - `redis/data/`
 
-This repo has GitHub action that can do backups to S3 (do-backups.yml)
+There are scripts that perform backups and uploads to S3: 
+- `_utils/backup_db.sh`: backup DB
+- `_utils/backup_files.sh`: backup user uploaded files
+
+For the backups to work you have to create file `_utils/.env` by using `_utils/.env-EXAMPLE` as template.
+
+This repo has GitHub action that can do backups to S3 (`do-backups.yml`)
+
