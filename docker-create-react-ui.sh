@@ -17,10 +17,10 @@ sed -i "/^VITE_API_URL=/c\VITE_API_URL=$APP_URL" .env
 echo "Replacing texts in sourcce code..."
 sed -i "s|Invoice Ninja (React)|$APP_NAME|g" public/manifest.json
 sed -i "s|Disallow:|Disallow: /|g" public/robots.txt
-find . -type f -exec sed -i "s|invoiceninja-logo@light.png|beepro-logo@light.png|g"  {} +
-find . -type f -exec sed -i "s|invoiceninja-logo@dark.png|beepro-logo@light.png|g"  {} +
-find . -type f -exec sed -i "s|Invoice Ninja Logo||g"  {} +
-find . -type f -exec sed -i "s|Invoice Ninja|$APP_NAME|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoiceninja-logo@light.png|beepro-logo@light.png|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoiceninja-logo@dark.png|beepro-logo@light.png|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja Logo||g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja|$APP_NAME|g"  {} +
 
 echo
 echo "Compiling React UI for Invoice Ninja, in hosted mode..."
