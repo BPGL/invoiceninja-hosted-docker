@@ -12,7 +12,7 @@ done
 
 git pull
 
-chmod 777 docker/app/public 
+chmod 777 docker/app/public
 chmod 777 docker/app/storage
 
 docker compose pull
@@ -32,6 +32,8 @@ until docker compose logs -n 50 -f | tee /dev/tty | grep -q "ready to handle con
 ./docker-enable-stripe.sh
 
 ./docker-localize.sh
+
+./docker-remove-flutter.sh
 
 if [ "$skip_ui" == false ]; then
     ./docker-create-react-ui.sh
