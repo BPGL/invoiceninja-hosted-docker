@@ -32,3 +32,5 @@ docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/
 docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/logo192.png
 docker compose cp ./config/images/favicon.ico reactui:/usr/share/nginx/html/logo180.png
 
+docker compose restart reactui
+
