@@ -18,6 +18,8 @@ docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name 
 echo Replacing references to IN name in code...
 docker compose exec -it --user root app sh -c "find /var/www/app/lang/ -type f -name '*.php'  -exec sed -i 's|Invoice Ninja|$APP_NAME|g' {} +"
 
+# Disable welcome emails:
+docker-compose exec -t app sed -i 's/if (Ninja::isHosted()) {/if (Ninja::isHosted() \&\& false) {/' app/Listeners/Account/CreateAccountActivity.php
 
 docker compose exec -t app sh -c "composer dump-autoload" && \
 docker compose exec -t app sh -c "php artisan route:clear" && \
