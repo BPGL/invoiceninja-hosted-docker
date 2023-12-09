@@ -1,3 +1,2 @@
-rm -fr ./docker/app/public/*.js
-rm -fr ./docker/app/public/*.js.map
+docker compose exec -t app sh -c "cat /dev/null > resources/views/index/index.blade.php"
 
