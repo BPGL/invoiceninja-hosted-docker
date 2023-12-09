@@ -21,6 +21,7 @@ find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i 
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoiceninja-logo@dark.png|beepro-logo@light.png|g"  {} +
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja Logo||g"  {} +
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja|$APP_NAME|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoiceninja.com|$APP_DOMAIN|g"  {} +
 
 echo
 echo "Compiling React UI for Invoice Ninja, in hosted mode..."
