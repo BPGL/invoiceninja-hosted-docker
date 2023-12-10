@@ -1,19 +1,10 @@
-name: Rebuild UI
+name: Server backups
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment'
-        required: true
-        default: 'Staging'
-        type: choice
-        options:
-          - Production
-          - Staging
 
 jobs:
-  rebuildui:
+  syncdb:
     runs-on: ubuntu-latest
     env:
       SSH_USER: "${{ vars.SSH_USER }}"
@@ -21,16 +12,6 @@ jobs:
       SSH_HOST: "${{ secrets.SSH_HOST }}"
 
     steps:
-      - name: Set WORKDIR according to selected environment
-        run: |
-          if [ "${{ inputs.environment }}" = "Staging" ]; then
-            echo "Setting WORKDIR to staging path"
-            echo "WORKDIR=${{ secrets.WORKDIR_STAGING }}" >> $GITHUB_ENV
-          else
-            echo "Setting WORKDIR to default path"
-            echo "WORKDIR=${{ secrets.WORKDIR }}" >> $GITHUB_ENV
-          fi
-
       - name: Configure SSH client
         run: |
           mkdir -p ~/.ssh/
@@ -65,11 +46,11 @@ jobs:
             --cidr ${{ steps.get-ip.outputs.ip_address }}/32
 
 
-      - name: Git pull
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && git pull'"
+      - name: Perform DB sync
+        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./sync_db.sh $WORKDIR $WORKDIR_STAGING'"
 
-      - name: Rebuild app
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && ./docker-create-react-ui.sh'"
+      - name: Perform files sync
+        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./sync_files.sh $WORKDIR $WORKDIR_STAGING'"
 
 
       - name: Remove Access from Security Group

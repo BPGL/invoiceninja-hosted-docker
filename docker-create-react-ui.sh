@@ -7,7 +7,9 @@ echo "Creating React UI..."
 
 cd ./docker/app/
 git clone --single-branch --branch $REACTUI_REPO_BRANCH $REACTUI_REPO
+
 cd invoiceninja-ui
+git reset --hard
 git pull
 cp -f .env.example .env
 sed -i "/^VITE_IS_HOSTED=/c\VITE_IS_HOSTED=true" .env
