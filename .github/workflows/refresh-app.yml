@@ -25,10 +25,10 @@ jobs:
         run: |
           if [ "${{ inputs.environment }}" = "Staging" ]; then
             echo "Setting WORKDIR to staging path"
-            echo "WORKDIR=${{ secrets.WORKDIR_STAGING }}" >> $GITHUB_ENV
+            echo "WORKDIR=${{ vars.WORKDIR_STAGING }}" >> $GITHUB_ENV
           else
             echo "Setting WORKDIR to default path"
-            echo "WORKDIR=${{ secrets.WORKDIR }}" >> $GITHUB_ENV
+            echo "WORKDIR=${{ vars.WORKDIR }}" >> $GITHUB_ENV
           fi
 
       - name: Configure SSH client
