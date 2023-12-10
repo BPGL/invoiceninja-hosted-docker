@@ -2,8 +2,6 @@ echo
 echo "Replacing logo images..."
 docker compose cp ./config/images/new_logo.png app:/var/www/app/public/images/
 docker compose cp ./config/images/favicon.ico app:/var/www/app/public/
-docker compose cp ./config/images/admin.blade.php app:/var/www/app/resources/views/email/template/
-docker compose cp ./config/images/client.blade.php app:/var/www/app/resources/views/email/template/
 
 echo
 echo "Replacing logo referenced in code..."

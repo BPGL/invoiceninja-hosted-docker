@@ -37,6 +37,8 @@ until docker compose logs -n 50 -f | tee /dev/tty | grep -q "ready to handle con
 
 ./docker-replace-images.sh
 
+./docker-update-backend.sh
+
 ./docker-enable-stripe.sh
 
 ./docker-localize.sh
