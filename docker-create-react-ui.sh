@@ -6,7 +6,7 @@ echo
 echo "Creating React UI..."
 
 cd ./docker/app/
-git clone --single-branch --branch main $REACTUI_REPO
+git clone --single-branch --branch $REACTUI_REPO_BRANCH $REACTUI_REPO
 cd invoiceninja-ui
 git pull
 cp -f .env.example .env

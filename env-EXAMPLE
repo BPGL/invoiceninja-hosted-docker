@@ -77,3 +77,4 @@ TWILIO_AUTH_TOKEN=
 TWILIO_VERIFY_SID=
 
 REACTUI_REPO=git@github.com:invoiceninja/ui.git
+REACTUI_REPO_BRANCH=main
