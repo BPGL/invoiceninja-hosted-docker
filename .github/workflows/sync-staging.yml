@@ -1,4 +1,4 @@
-name: Server backups
+name: Sync staging version
 
 on:
   workflow_dispatch:
@@ -10,6 +10,8 @@ jobs:
       SSH_USER: "${{ vars.SSH_USER }}"
       SSH_KEY_ENCODED: "${{ secrets.SSH_KEY_ENCODED }}"
       SSH_HOST: "${{ secrets.SSH_HOST }}"
+      WORKDIR: "${{ vars.WORKDIR }}"
+      WORKDIR_STAGING: "${{ vars.WORKDIR_STAGING }}"
 
     steps:
       - name: Configure SSH client

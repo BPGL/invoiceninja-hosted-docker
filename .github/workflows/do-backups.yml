@@ -6,13 +6,13 @@ on:
     - cron: '00 02 * * *'
 
 jobs:
-  syncdb:
+  dobackup:
     runs-on: ubuntu-latest
     env:
       SSH_USER: "${{ vars.SSH_USER }}"
       SSH_KEY_ENCODED: "${{ secrets.SSH_KEY_ENCODED }}"
       SSH_HOST: "${{ secrets.SSH_HOST }}"
-      WORKDIR: "${{ secrets.WORKDIR }}"
+      WORKDIR: "${{ vars.WORKDIR }}"
 
     steps:
       - name: Configure SSH client
