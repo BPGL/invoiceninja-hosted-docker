@@ -17,7 +17,15 @@ chmod 777 docker/app/storage
 
 docker compose pull
 
-docker compose up -d
+set -a
+source ./env
+set +a
+
+REACTUI_EXPOSE_PORT=$REACTUI_EXPOSE_PORT \
+API_EXPOSE_PORT=$API_EXPOSE_PORT \
+MYSQL_EXPOSE_PORT=$MYSQL_EXPOSE_PORT \
+  docker compose up -d
+
 chown $(docker compose exec -t app id -u) docker/app/public docker/app/storage
 
 docker compose exec -t --user root app sh -c "chown invoiceninja:invoiceninja ./public"
