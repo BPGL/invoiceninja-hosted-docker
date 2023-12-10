@@ -4,7 +4,7 @@ services:
   server:
     image: nginx
     restart: always
-    environment: 
+    environment:
        HTTPS: on
     volumes:
       # Vhost configuration
@@ -26,7 +26,7 @@ services:
   reactui:
     image: nginx
     restart: always
-    environment: 
+    environment:
        HTTPS: on
     volumes:
       - ./docker/app/invoiceninja-ui/dist/:/usr/share/nginx/html/
@@ -64,7 +64,7 @@ services:
 #    build:
 #      context: ./config/mysql
     ports:
-      - "3306:3306"
+      - "${MYSQL_EXPOSE_PORT-3306}:3306"
     restart: always
     env_file: env
     volumes:
@@ -107,8 +107,8 @@ services:
     restart: always
     volumes:
       - "./redis/data:/data"
-    ports:
-      - "6379:6379"
+#    ports:
+#      - "6379:6379"
     networks:
       - invoiceninja
 
