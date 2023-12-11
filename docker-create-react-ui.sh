@@ -11,8 +11,9 @@ cd $DIR/docker/app/react-ui/
 git clone --single-branch --branch $REACTUI_REPO_BRANCH $REACTUI_REPO
 
 cd $DIR/docker/app/react-ui/invoiceninja-ui
+git config pull.rebase true
 git reset --hard
-git pull
+git pull || exit 1
 cp -f .env.example .env
 sed -i "/^VITE_IS_HOSTED=/c\VITE_IS_HOSTED=true" .env
 sed -i "/^VITE_APP_TITLE=/c\VITE_APP_TITLE=\"$APP_NAME\"" .env
