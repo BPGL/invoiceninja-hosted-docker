@@ -66,10 +66,10 @@ jobs:
 
 
       - name: Git pull
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && git pull'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/ && git pull'"
 
       - name: Rebuild app
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && ./docker-create-react-ui.sh'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/ && ./docker-create-react-ui.sh'"
 
 
       - name: Remove Access from Security Group

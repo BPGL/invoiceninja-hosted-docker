@@ -49,10 +49,10 @@ jobs:
 
 
       - name: Perform DB sync
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./sync_db.sh $WORKDIR $WORKDIR_STAGING'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/_utils/ && ./sync_db.sh $WORKDIR $WORKDIR_STAGING'"
 
       - name: Perform files sync
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./sync_files.sh $WORKDIR $WORKDIR_STAGING'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/_utils/ && ./sync_files.sh $WORKDIR $WORKDIR_STAGING'"
 
 
       - name: Remove Access from Security Group

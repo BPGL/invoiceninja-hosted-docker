@@ -50,10 +50,10 @@ jobs:
 
 
       - name: Perform DB dump
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./backup_db.sh'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/_utils/ && ./backup_db.sh'"
 
       - name: Perform files backup
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/_utils/ && ./backup_files.sh'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/_utils/ && ./backup_files.sh'"
 
 
       - name: Remove Access from Security Group

@@ -65,11 +65,11 @@ jobs:
             --cidr ${{ steps.get-ip.outputs.ip_address }}/32
 
       - name: Git pull
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && git pull'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/ && git pull'"
 
 
       - name: Rebuild app
-        run: ssh inserver "sudo sh -c 'cd $WORKDIR/ && ./rebuild_app.sh'"
+        run: ssh inserver "sh -c 'cd $WORKDIR/ && ./rebuild_app.sh'"
 
 
       - name: Remove Access from Security Group
