@@ -30,8 +30,9 @@ find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i 
 
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja Logo||g"  {} +
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|Invoice Ninja|$APP_NAME|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|https://invoiceninja.invoicing.com|$APP_URL|g"  {} +
 find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoiceninja.com|$APP_DOMAIN|g"  {} +
-find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|invoicing.co|$APP_DOMAIN|g"  {} +
+find . -type d \( -name .git -o -name .github \) -prune -o -type f -exec sed -i "s|https://invoicing.co|$APP_URL|g"  {} +
 
 cd $DIR/docker/app/react-ui/invoiceninja-ui
 echo
