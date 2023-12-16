@@ -14,6 +14,7 @@ docker-compose exec -t app sed -i '/App\\Providers\\NinjaTranslationServiceProvi
 
 echo Replacing references to IN website in code...
 docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|https://invoiceninja.invoicing.co|'\"\$APP_URL\"'|g' {} +"
+docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|https://invoicing.co|'\"\$APP_URL\"'|g' {} +"
 
 echo Replacing references to IN name in code...
 docker compose exec -it --user root app sh -c "find /var/www/app/lang/ -type f -name '*.php'  -exec sed -i 's|Invoice Ninja|$APP_NAME|g' {} +"
