@@ -1,0 +1,79 @@
+name: Restart nginx
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'Production'
+        type: choice
+        options:
+          - Production
+          - Staging
+
+jobs:
+  restartapp:
+    runs-on: ubuntu-latest
+    env:
+      SSH_USER: "${{ vars.SSH_USER }}"
+      SSH_KEY_ENCODED: "${{ secrets.SSH_KEY_ENCODED }}"
+      SSH_HOST: "${{ secrets.SSH_HOST }}"
+
+    steps:
+      - name: Set WORKDIR according to selected environment
+        run: |
+          if [ "${{ inputs.environment }}" = "Staging" ]; then
+            echo "Setting WORKDIR to staging path"
+            echo "WORKDIR=${{ vars.WORKDIR_STAGING }}" >> $GITHUB_ENV
+          else
+            echo "Setting WORKDIR to default path"
+            echo "WORKDIR=${{ vars.WORKDIR }}" >> $GITHUB_ENV
+          fi
+
+      - name: Configure SSH client
+        run: |
+          mkdir -p ~/.ssh/
+          echo $SSH_KEY_ENCODED | base64 --decode > ~/.ssh/server_key.key
+          chmod 600 ~/.ssh/server_key.key
+          cat >>~/.ssh/config <<END
+          Host inserver
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/server_key.key
+            StrictHostKeyChecking no
+          END
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_DEPLOYER_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_DEPLOYER_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_DEPLOYER_REGION }}
+
+
+      - name: Get Runner IP Address
+        id: get-ip
+        run: echo "ip_address=$(curl -s https://api64.ipify.org?format=json | jq -r '.ip')" >> $GITHUB_OUTPUT
+
+      - name: Open Access to Security Group
+        run: |
+          aws ec2 authorize-security-group-ingress \
+            --group-id ${{ secrets.AWS_SG_ID }} \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.get-ip.outputs.ip_address }}/32
+
+      - name: Restart nginx
+        run: ssh inserver "sh -c 'cd $WORKDIR/ && docker compose restart server'"
+
+
+      - name: Remove Access from Security Group
+        if: always()
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id ${{ secrets.AWS_SG_ID }} \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.get-ip.outputs.ip_address }}/32
+    
