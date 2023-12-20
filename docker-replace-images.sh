@@ -12,5 +12,5 @@ echo "Replacing logo referenced in code..."
 docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|https://invoicing.co/images/new_logo.png|'\"\$APP_URL\"'/images/new_logo.png|g' {} +"
 docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|https://invoicing.co/images/logo.png|'\"\$APP_URL\"'/images/logo.png|g' {} +"
 docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|Invoice Ninja logo||g' {} +"
-docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|invoiceninja-black-logo-2.png|new_logo.png|g' {} +"
+#docker compose exec -it --user root app sh -c "find /var/www/app/ -type f -name '*.php' ! -path \"*/vendor/*\" -exec sed -i 's|invoiceninja-black-logo-2.png|new_logo.png|g' {} +"
 
