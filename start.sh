@@ -21,6 +21,9 @@ set -a
 source ./env
 set +a
 
+docker compose stop app
+docker compose rm app -f
+
 REACTUI_EXPOSE_PORT=$REACTUI_EXPOSE_PORT \
 API_EXPOSE_PORT=$API_EXPOSE_PORT \
 MYSQL_EXPOSE_PORT=$MYSQL_EXPOSE_PORT \
